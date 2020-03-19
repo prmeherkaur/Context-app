@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
@@ -34,11 +34,10 @@ const words = {
     remember: "Recuérdame"
   }
 };
-class Form extends Component {
-  static contextType=LanguageContext;
-  render() {
-    const { classes } = this.props;
-    const {language,changeLanguage}=this.context;
+function Form (props) {
+    const { classes } = props;
+    const {language,changeLanguage}=useContext(LanguageContext);
+    //in Use context react looks up for the nearest provider which in this case is language provider in App.js
     const {email,signIn,password,remember}=words[language];
     return (
       <main className={classes.main}>
@@ -78,6 +77,6 @@ class Form extends Component {
         </Paper>
       </main>
     );
-  }
+  
 }
 export default withStyles(styles)(Form);
